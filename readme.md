@@ -1,3 +1,5 @@
+[![Docker Image CI](https://github.com/daison12006013/gorvel-docker-image/actions/workflows/docker-image.yml/badge.svg)](https://github.com/daison12006013/gorvel-docker-image/actions/workflows/docker-image.yml)
+
 # Gorvel's Docker Image
 
 This repository will build an image and pushes to [DockerHub](https://hub.docker.com/repository/docker/daison12006013/gorvel)
