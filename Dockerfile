@@ -4,8 +4,8 @@ LABEL maintainer="Daison Carino <daison12006013@gmail.com>"
 RUN apk add --update build-base npm nodejs-current
 
 WORKDIR /app
-ADD gorvel/ .
-COPY gorvel/go.mod gorvel/go.sum ./
+ADD lucid/ .
+COPY lucid/go.mod lucid/go.sum ./
 RUN go mod download
 
 # install missing reflex, build go and svelte
