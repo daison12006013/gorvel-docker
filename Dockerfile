@@ -20,4 +20,4 @@ RUN sh /app/lucid-setup/scripts/build-svelte.sh
 
 WORKDIR /app
 EXPOSE 8080 8081 8082
-CMD ["reflex", "-c", "lucid-setup/scripts/servedocker.conf"]
+CMD ["reflex", "-c", "lucid-setup/serve/servedocker.conf"]
