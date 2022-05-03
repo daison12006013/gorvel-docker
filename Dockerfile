@@ -4,17 +4,20 @@ LABEL maintainer="Daison Carino <daison12006013@gmail.com>"
 RUN apk add --update build-base npm nodejs-current
 
 WORKDIR /app
-ADD lucid/ .
-COPY lucid/go.mod lucid/go.sum ./
+RUN mkdir src/
+ADD lucid /app/lucid
+ADD ui /app/lucid-ui
+ADD setup /app/lucid-setup
+
+WORKDIR /app/lucid
 RUN go mod download
+RUN sh ./cmd/install-reflex.sh
+RUN sh ./cmd/check-binaries.sh
+RUN sh ./cmd/build-go.sh
 
-# install missing reflex, build go and svelte
-RUN sh cmd/install-reflex.sh
-RUN sh cmd/check-binaries.sh
-RUN sh cmd/build-go.sh
-RUN sh cmd/build-svelte.sh
+WORKDIR /app/lucid-ui
+RUN sh /app/lucid-setup/scripts/build-svelte.sh
 
-EXPOSE 8080 8081
-
-# to serve, use this command
-CMD ["sh", "./serve", "docker"]
+WORKDIR /app
+EXPOSE 8080 8081 8082
+CMD ["reflex", "-c", "lucid-setup/scripts/servedocker.conf"]
